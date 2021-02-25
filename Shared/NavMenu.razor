@@ -1,39 +1,91 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">HTTPClientDemo2</a>
+﻿<nav style="background-color: #fbf2eb" class="top-row pl-4 navbar navbar-light bglight">
+    
+    <a style="color: #bf7c00" class="navbar-brand" href="">Self Care Sunday</a>
+    
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
-</div>
+    
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+</nav>
+
+<nav class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+            <NavLink style="color: #FFA500" class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
+            <NavLink style="color: #FFA500" class="nav-link" href="counter">
                 <span class="oi oi-plus" aria-hidden="true"></span> Counter
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
+            <NavLink style="color: #FFA500" class="nav-link" href="fetchdata">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
+            <NavLink style="color: #FFA500" class="nav-link" href="weather">
                 <span class="oi oi-rain" aria-hidden="true"></span> Weather
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="dictionary">
+            <NavLink style="color: #FFA500" class="nav-link" href="dictionary">
                 <span class="oi oi-book" aria-hidden="true"></span> Dictionary
             </NavLink>
         </li>
+        <li class="nav-item px-3">
+            <NavLink style="color: #FFA500" class="nav-link" href="about">
+                <span class="oi oi-question-mark" aria-hidden="true"></span> About
+            </NavLink>
+        </li>
     </ul>
-</div>
+    <style>
+        .nav-link, .top-row {
+            font-family: "Papyrus", fantasy;
+            font-weight: bold;
+        }
+
+        .top-row{
+            font-size: 30px;
+        }
+        /*
+        .burger div{
+            width: 25px;
+            height: 5px;
+            margin: 5px;
+        }
+
+        .burger{
+            display: none;
+        }
+
+        @@media screen and (max-width:1024px){
+            .nav-link{
+                width: 60%;
+            }
+        }
+
+        @@media screen and (max-width:768px){
+            .nav-link{
+                position: absolute;
+                left: 0px;
+                height: 92vh;
+                top: 8vh;
+                display: flex;
+                flex-direction:column;
+                align-items: center;
+            }
+        } */
+   
+    </style>
+
+    
+   
+    
+</nav>
 
 @code {
     private bool collapseNavMenu = true;

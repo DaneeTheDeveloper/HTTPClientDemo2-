@@ -12,7 +12,7 @@ namespace HTTPClientDemo2.Data
         {
             var client = new HttpClient();
             client.BaseAddress = new Uri("https://wordsapiv1.p.rapidapi.com");
-            client.DefaultRequestHeaders.Add("X-Mashape-Key", "Your Key");
+            client.DefaultRequestHeaders.Add("X-Mashape-Key", "1bc55635edmsh5d5800c31204366p15f03djsneb5918e71ce9");
 
             var response = await client.GetAsync("/words/" + wordToDefine);
             response.EnsureSuccessStatusCode();

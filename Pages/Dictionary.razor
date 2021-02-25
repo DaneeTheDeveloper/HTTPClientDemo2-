@@ -4,47 +4,121 @@
 
 @inject DictionaryService DictionaryPage
 
-<h1>Dictionary</h1>
+<div class="header">
+    <img src="images/STOCK-PexelsLibraryJoshSorenson990432.jpg" />
+    <h1>Dictionary</h1>
+    <style>
+        .header img {
+            width: 500px;
+            height: 150px;
+            background: #555;
+        }
 
-<p>Enter word to look up! </p>
-<input @bind="wordToDefine" />
+        .header h1, .input-group, .btn-primary, .table {
+            position: relative;
+            top: 18px;
+            left: 10px;
+        }
+
+        h1 {
+            font-family: "Courier New", monospace;
+        }
+    </style>
+</div>
+
+<div class="input-group mb-3">
+    <input @bind="wordToDefine" placeholder="Expand your vocabulary!" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    @if (hasError)
+    {
+        <div class="invalid-feedback" style="display: block">
+            Please try in another word.
+        </div>
+    }
+</div>
 
 <button class="btn btn-primary" @onclick="WordLookUp">Search Word</button>
+@if (isLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (definitions != null)
+{
+    /* Repeat the word and add pronunciation
 
-    <table class="table">
+      */  <table class="table">
         <thead>
             <tr>
-               
-                <th>Results</th>
-               
-                
-                
+                <th>Definition</th>
+                <th>Part of Speech</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var definition in definitions.results)
+            @foreach (var word in definitions.results)
             {
-            <tr>
-                
-                <td>@definition</td>
-               
-                
-        
-            </tr>
-
+                <tr>
+                    <td>@word.definition</td>
+                    <td>@word.partOfSpeech</td>
+                </tr>
             }
         </tbody>
     </table>
 
+    <br/>
+    /*  Fix this display
+
+    */
+    <table class="table2">
+        <thead>
+            <tr>
+                <th>Synonyms:</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var word in definitions.results)
+             {
+                <tr>
+                     @if (word.synonyms != null && word.synonyms.Count > 0)
+                        {
+                             <td>@String.Join(", ", word.synonyms)</td>
+                        }
+                     else
+                        {
+                            <td></td>
+                        }
+
+                </tr>
+                
+             }
+        </tbody>
+        </table>
+   
+}
+
 
 @code {
-
+    bool hasError = false;
+    bool isLoading = false;
     string wordToDefine;
     private DefinitionResult definitions;
 
     protected async Task WordLookUp()
     {
-       DefinitionResult definitions = await DictionaryPage.GetDefinitionAsync(wordToDefine);
+        try
+        {
+            hasError = false;
+            isLoading = true;
+            definitions = await DictionaryPage.GetDefinitionAsync(wordToDefine);
+        }
+        catch (Exception e)
+        {
+            hasError = true;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+        
     }
 
 }
