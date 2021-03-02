@@ -37,8 +37,11 @@
 </div>
 
 <button class="btn btn-primary" @onclick="WordLookUp">Search Word</button>
+<br/>
+<br/>
 @if (isLoading)
 {
+   
     <p><em>Loading...</em></p>
 }
 else if (definitions != null)
@@ -64,36 +67,27 @@ else if (definitions != null)
     </table>
 
     <br/>
-    /*  Fix this display
 
-    */
-    <table class="table2">
-        <thead>
-            <tr>
-                <th>Synonyms:</th>
+    <p><b>Synonyms:</b></p>
+    <p>
+        <ul>
+         @foreach (var word in definitions.results)
+          {
 
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var word in definitions.results)
-             {
-                <tr>
-                     @if (word.synonyms != null && word.synonyms.Count > 0)
-                        {
-                             <td>@String.Join(", ", word.synonyms)</td>
-                        }
-                     else
-                        {
-                            <td></td>
-                        }
+              @if (word.synonyms != null && word.synonyms.Count > 0)
+               {
+                    <li>@String.Join(", ", word.synonyms)</li>
+               }
 
-                </tr>
-                
-             }
-        </tbody>
-        </table>
-   
+          }
+
+        </ul>
+    
+    </p>
+
 }
+
+
 
 
 @code {
