@@ -1,103 +1,85 @@
-﻿<nav style="background-color: #fbf2eb" class="top-row pl-4 navbar navbar-light bglight">
-    
-    <a style="color: #bf7c00" class="navbar-brand" href="">Self Care Sunday</a>
-    
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    
+﻿
 
-</nav>
+<MatDrawerContainer Style="width: 100vw; height: 100%;">
+    <MatDrawer @bind-Opened="@Opened" Style=" background-image: linear-gradient(180deg, rgb(237, 240, 225) 0%, #7FFFD4 70%
+">
+        <MatNavMenu>
 
-<nav class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink style="color: #FFA500" class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink style="color: #FFA500" class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink style="color: #FFA500" class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink style="color: #FFA500" class="nav-link" href="weather">
-                <span class="oi oi-rain" aria-hidden="true"></span> Weather
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink style="color: #FFA500" class="nav-link" href="dictionary">
-                <span class="oi oi-book" aria-hidden="true"></span> Dictionary
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink style="color: #FFA500" class="nav-link" href="about">
-                <span class="oi oi-question-mark" aria-hidden="true"></span> About
-            </NavLink>
-        </li>
-    </ul>
-    <style>
-        .nav-link, .top-row {
-            font-family: "Papyrus", fantasy;
-            font-weight: bold;
+            <nav style="background-color: #fbf2eb" class="top-row pl-4 navbar navbar-light bglight">
+
+                <a style="color: #bf7c00" class="navbar-brand" href="">Self Care Sunday</a>
+
+                <button class="navbar-toggler" @onclick="ToggleNavMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+            </nav>
+            <nav class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+                <ul class="nav flex-column">
+                    <li class="nav-item px-3">
+                        <MatNavItem style="color: #FFA500" class="nav-link" href="" Match="NavLinkMatch.All">
+                            <span class="oi oi-home" aria-hidden="true"></span> Home
+                        </MatNavItem>
+                    </li>
+                    <li class="nav-item px-3">
+                        <MatNavItem style="color: #FFA500" class="nav-link" href="counter">
+                            <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                        </MatNavItem>
+                    </li>
+                    <li class="nav-item px-3">
+                        <MatNavItem style="color: #FFA500" class="nav-link" href="fetchdata">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                        </MatNavItem>
+                    </li>
+                    <li class="nav-item px-3">
+                        <MatNavItem style="color: #FFA500" class="nav-link" href="weather">
+                            <span class="oi oi-rain" aria-hidden="true"></span> Weather
+                        </MatNavItem>
+                    </li>
+                    <li class="nav-item px-3">
+                        <MatNavItem style="color: #FFA500" class="nav-link" href="dictionary">
+                            <span class="oi oi-book" aria-hidden="true"></span> Dictionary
+                        </MatNavItem>
+                    </li>
+                    <li class="nav-item px-3">
+                        <MatNavItem style="color: #FFA500" class="nav-link" href="about">
+                            <span class="oi oi-question-mark" aria-hidden="true"></span> About
+                        </MatNavItem>
+                    </li>
+                </ul>
+
+
+            </nav>
+        </MatNavMenu>
+    </MatDrawer>
+        <MatDrawerContent>
+            <MatIconButton Icon="menu" OnClick="@ButtonClicked"></MatIconButton>
+</MatDrawerContent>
+</MatDrawerContainer>
+   
+
+
+    @code {
+        private bool collapseNavMenu = true;
+
+        private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+        private void ToggleNavMenu()
+        {
+            collapseNavMenu = !collapseNavMenu;
         }
 
-        .top-row {
-            font-size: 30px;
-        }
-        
-        .burger div{
-            width: 25px;
-            height: 5px;
-            margin: 5px;
-        }
 
-        .burger{
-            display: none;
-        }
-
-        @@media screen and (max-width:1024px){
-            .nav-link{
-                width: 60%;
-            }
-        }
-
-        @@media screen and (max-width:768px){
-            .nav-link{
-                position: absolute;
-                left: 0px;
-                height: 92vh;
-                top: 8vh;
-                display: flex;
-                flex-direction:column;
-                align-items: center;
-            }
-        } 
-
-    </style>
-
-    <div class="burger">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-    </div>
-
-
-</nav>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
     }
-}
+
+    @code
+{
+        bool Opened = true;
+
+        void ButtonClicked()
+        {
+            Opened = !Opened;
+        }
+
+    }
