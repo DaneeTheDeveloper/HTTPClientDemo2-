@@ -1,13 +1,25 @@
 ﻿@inherits LayoutComponentBase
-
+@*comment out*@
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+        <div class="sidebar">
+            <NavMenu />
+        </div>
 
-    <div class="main">
-        <div class="content px-4">
-            @Body
+        <div class="main">
+            <div class="content px-4">
+                @Body
+            </div>
         </div>
     </div>
-</div>
+
+
+@code
+{
+    bool Opened = true;
+
+    void ButtonClicked()
+    {
+        Opened = !Opened;
+    }
+
+}

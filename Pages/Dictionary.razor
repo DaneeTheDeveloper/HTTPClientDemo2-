@@ -23,6 +23,11 @@
         h1 {
             font-family: "Courier New", monospace;
         }
+
+        h3 {
+            font-weight: bolder;
+            font-size: larger;
+        }
     </style>
 </div>
 
@@ -31,7 +36,7 @@
     @if (hasError)
     {
         <div class="invalid-feedback" style="display: block">
-            Please try in another word.
+            Please try another word.
         </div>
     }
 </div>
@@ -46,9 +51,11 @@
 }
 else if (definitions != null)
 {
-    /* Repeat the word and add pronunciation
+    <br/>
+    <h2>@definitions.word</h2>
+    <h3>[@definitions.pronunciation.all]</h3>
 
-      */  <table class="table">
+    <table class="table">
         <thead>
             <tr>
                 <th>Definition</th>
